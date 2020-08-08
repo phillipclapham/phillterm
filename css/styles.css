@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&display=swap');
 
+@keyframes fadeIn {
+  from { opacity: 0%; }
+  to { opacity: 100%; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes outLeft {
+  from { left: 0%; }
+  top { left: 110%; }
+}
+
+@keyframes moveUp {
+  from { top: 0px; }
+  to { top: -50px }
+}
+
 body, html {
   box-sizing: border-box;
   width: 100%;
@@ -23,6 +43,16 @@ body {
   margin: auto;
   top: 50%;
   transform: translateY(-50%);
+  overflow-x: hidden;
+  border: 1px solid green;
+  border-radius: 30px;
+}
+
+.conTitle {
+  animation: fadeIn 1s;
+  opacity: 1;
+  position: relative;
+  padding: 10px 10px 0;
 }
 
 .conTitleText {
@@ -39,12 +69,40 @@ body {
 }
 
 .conTitleTextSubSmall {
-  font-size: 1rem;
+  font-size: 0.95rem;
+  opacity: 0;
+  display: inline-block;
+  background: green;
+  color: #000;
+  font-weight: 100;
+  padding: 5px;
+  position: relative;
+  left: 0%;
+}
+
+.conTitleTextSubSmall.active {
+  opacity: 1;
+  animation: fadeIn 1s;
+}
+
+.conTitleTextSubSmall.active2 {
+  left: 110%;
+  animation: outLeft 2s ease,
+             fadeOut 2s ease;;
+  opacity: 0;
 }
 
 .conBody {
-  height: 80%;
+  height: 70%;
   overflow: auto;
+  position: relative;
+  top: 0px;
+  padding: 0 10px;
+}
+
+.conBody.active3 {
+  animation: moveUp 1s ease;
+  top: -50px;
 }
 
 .conBody::-webkit-scrollbar {
@@ -57,6 +115,7 @@ body {
   font-size: 1.25rem;
   margin: 0;
   font-weight: 900;
+  opacity: 1;
 }
 
 .conBodyInput {
@@ -68,6 +127,7 @@ body {
   font-weight: 900;
   font-size: 1.05rem;
   width: 90%;
+  opacity: 1;
 }
 
 .conBodyInput:focus {
@@ -76,6 +136,7 @@ body {
 
 .conBodyOutput {
   margin: 0;
+  opacity: 1;
 }
 
 
@@ -89,4 +150,13 @@ body {
 
 .conBodyOutput a:hover {
   color: green;
+}
+
+@media (min-width: 768px) {
+  .conTitle {
+    padding: 25px 25px 0;
+  }
+  .conBody {
+    padding: 0 25px;
+  }
 }
