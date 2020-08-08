@@ -1,0 +1,24 @@
+{
+  "name": "phillterm",
+  "version": "1.0.0",
+  "description": "PhillTerm: Explore the world of Phill through an old-school terminal emulator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phillipclapham/phillterm.git"
+  },
+  "keywords": [],
+  "author": " <Phillip A. Clapham> (phillipclapham.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phillipclapham/phillterm/issues"
+  },
+  "homepage": "https://github.com/phillipclapham/phillterm#readme",
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
