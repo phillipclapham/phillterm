@@ -148,5 +148,18 @@ function runTerm(moveNum, moveText) {
   });
 }
 
+// Setup initial help text
+setTimeout(() => {
+  document.querySelector('.conTitleTextSubSmall').classList.add('active');
+}, 1000);
+
+setTimeout(() => {
+  document.querySelector('.conTitleTextSubSmall').classList.add('active2');
+}, 10000);
+
+setTimeout(() => {
+  document.querySelector('.conBody').classList.add('active3');
+}, 11000);
+
 // Run Term
 runTerm(moveNum, '');
