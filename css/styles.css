@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&display=swap');
+
+body, html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #000;
+  color: green;
+  font-family: 'Source Code Pro', monospace;
+  position: relative;
+}
+
+.mainContainer {
+  position: relative;
+  width: 95%;
+  height: 95%;
+  display: block;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.conTitleText {
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-decoration: underline;
+  margin: 0;
+}
+
+.conTitleTextSub {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.conTitleTextSubSmall {
+  font-size: 1rem;
+}
+
+.conBody {
+  height: 80%;
+  overflow: auto;
+}
+
+.conBody::-webkit-scrollbar {
+    width: 12px;
+    background-color: #000;
+}
+
+.conBodyText {
+  display: inline;
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 900;
+}
+
+.conBodyInput {
+  background: black;
+  color: green;
+  border: none;
+  padding-left: 10px;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 900;
+  font-size: 1.05rem;
+  width: 90%;
+}
+
+.conBodyInput:focus {
+  outline: none;
+}
+
+.conBodyOutput {
+  margin: 0;
+}
+
+
+.cboText {
+  font-weight: 900;
+}
+
+.conBodyOutput a {
+  color: red;
+}
+
+.conBodyOutput a:hover {
+  color: green;
+}
