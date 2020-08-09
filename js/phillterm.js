@@ -16,7 +16,7 @@ const commands = {
     callbackContent: '<br><br><strong><p class="conBodyOutput">Make a selection (1, 2, 3, or any other key  to exit):</p></strong>',
   },
   'help': {
-    content: '<p class="conBodyOutput">List of Available Commands:</p><br><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;about:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;clear:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear screen</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;contact:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;resume:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View Phill\'s resume</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;history:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View command history</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;quote:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return a random quote</p>',
+    content: '<p class="conBodyOutput">List of Available Commands:</p><br><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;about:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;clear:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear screen</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;contact:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;resume:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View Phill\'s resume</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;history:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View command history</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;quote:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return a random quote</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;exit:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exit terminal</p>',
     callback: '',
     callbackContent: '',
   },
@@ -119,6 +119,15 @@ function runTerm(moveNum, moveText) {
         if (enteredVal === 'history') {
           termBody.innerHTML = termBody.innerHTML + `<br>${commandHistory}`;
           enteredVal = '';
+        }
+        if (enteredVal === 'exit') {
+          termBody.innerHTML = `<br><p class="conBodyOutputExit">Exiting...</p>`;
+          setTimeout(() => {
+            document.querySelector('.mainContainer').classList.add('exited');
+            document.querySelector('.mainContainerOut').classList.add('exited');
+            document.querySelector('.exitedShow').classList.add('exited');
+          }, 3000);
+          return false;
         }
         runTerm(moveNum + 1, enteredVal);
       }
