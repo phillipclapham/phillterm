@@ -1,7 +1,7 @@
 /* To Do:
 
-Implement - History command, game, screensaver,
-projects / experience, quotes, pics, see Phill, search, apps?
+Implement - game, screensaver,
+projects / experience, add more quotes, pics, see Phill, search, apps?
 Change new window opens to modals?
 
 */
@@ -24,9 +24,14 @@ const commands = {
     callbackContent: '<br><br><strong><p class="conBodyOutput">Make a selection (1, 2, 3, or any other key  to exit):</p></strong>',
   },
   'help': {
-    content: '<p class="conBodyOutput">List of Available Commands:</p><br><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;about:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;clear:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear screen</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;contact:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;resume:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View Phill\'s resume</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;history:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View command history</p>',
+    content: '<p class="conBodyOutput">List of Available Commands:</p><br><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;about:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;clear:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear screen</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;contact:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Phill</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;resume:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View Phill\'s resume</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;history:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View command history</p><p class="conBodyOutput"><span class="cboText">&nbsp;&nbsp;quote:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return a random quote</p>',
     callback: '',
     callbackContent: '',
+  },
+  'quote': {
+    content: '<p class="conBodyOutput">A Quote For Your Brain:</p>',
+    callback: 'quote',
+    callbackContent: ['<p class="conBodyOutput">\“Any fool can write code that a computer can understand. Good programmers write code that humans can understand.\” – Martin Fowler</p>', '<p class="conBodyOutput">\“First, solve the problem. Then, write the code.\” – John Johnson</p>', '<p class="conBodyOutput">\“Experience is the name everyone gives to their mistakes.\” – Oscar Wilde</p>', '<p class="conBodyOutput">\“Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday’s code.\” – Dan Salomon</p>', '<p class="conBodyOutput">\“In order to be irreplaceable, one must always be different\” – Coco Chanel</p>', '<p class="conBodyOutput">\“Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.\” – Antoine de Saint-Exupery</p>'],
   },
 };
 
@@ -51,9 +56,16 @@ function runTerm(moveNum, moveText) {
     termBody.innerHTML = termBody.innerHTML + `<br><p class='conBodyText'>~$</p><input type='text' id='conInput${moveNum}' class='conBodyInput' autocomplete="off">`;
     termBody.querySelector(`#conInput${moveNum}`).focus();
   } else {
-    termBody.innerHTML = termBody.innerHTML + commands[moveText].callbackContent;
-    termBody.innerHTML = termBody.innerHTML + `<br><p class='conBodyText'>~~</p><input type='text' id='conInput${moveNum}' class='conBodyInput'>`;
-    termBody.querySelector(`#conInput${moveNum}`).focus();
+    if (callBackMode === 'quote') {
+      let r = Math.floor(Math.random() * commands[moveText].callbackContent.length);
+      termBody.innerHTML = termBody.innerHTML + commands[moveText].callbackContent[r];
+      termBody.innerHTML = termBody.innerHTML + `<br><p class='conBodyText'>~$</p><input type='text' id='conInput${moveNum}' class='conBodyInput' autocomplete="off">`;
+      termBody.querySelector(`#conInput${moveNum}`).focus();
+    } else {
+      termBody.innerHTML = termBody.innerHTML + commands[moveText].callbackContent;
+      termBody.innerHTML = termBody.innerHTML + `<br><p class='conBodyText'>~~</p><input type='text' id='conInput${moveNum}' class='conBodyInput' autocomplete="off">`;
+      termBody.querySelector(`#conInput${moveNum}`).focus();
+    }
   }
 
   const inputGrab = document.querySelectorAll('.conBodyInput');
@@ -63,6 +75,7 @@ function runTerm(moveNum, moveText) {
   let keyCount = 0;
   const thisInput = termBody.querySelector(`#conInput${moveNum}`);
   thisInput.addEventListener('keyup', (event) => {
+    if (callBackMode === 'quote') consoleCustom = false;
     if (consoleCustom) {
       if (event.keyCode === 13) {
         event.preventDefault();
