@@ -29,10 +29,24 @@ body, html {
 }
 
 body {
-  background: #000;
+  background: green;
   color: green;
   font-family: 'Source Code Pro', monospace;
   position: relative;
+}
+
+.mainContainerOut {
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  overflow-x: hidden;
+  border: 1px solid green;
+  border-radius: 30px;
+  background: darkgreen;
 }
 
 .mainContainer {
@@ -46,6 +60,7 @@ body {
   overflow-x: hidden;
   border: 1px solid green;
   border-radius: 30px;
+  background: #000;
 }
 
 .conTitle {

@@ -1,11 +1,3 @@
-/* To Do:
-
-Implement - game, screensaver,
-projects / experience, add more quotes, pics, see Phill, search, apps?
-Change new window opens to modals?
-
-*/
-
 // Initialize first run
 const termBody = document.querySelector('.conBody');
 const moveNum = 0;
